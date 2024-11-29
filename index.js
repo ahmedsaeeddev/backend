@@ -4,6 +4,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import comments from './comments.js';
 import productRoutes from './routes/productsRoute.js';
+import userRoutes from './routes/usersRoute.js';
+
 
 const app = express();
 dotenv.config();
@@ -19,6 +21,7 @@ app.get('/',(req,res)=>{
 // .get
 
 app.use('/products',productRoutes);
+app.use('/users',userRoutes);
 
 
 
