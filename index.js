@@ -5,11 +5,14 @@ import dotenv from 'dotenv';
 import comments from './comments.js';
 import productRoutes from './routes/productsRoute.js';
 import userRoutes from './routes/usersRoute.js';
-
+import cors from 'cors';
+import { authRoute } from './routes/authRoute.js';
 
 const app = express();
 dotenv.config();
 
+
+app.use(cors())
 
 app.get('/',(req,res)=>{
     res.status(200).send("Welcome to Backend")
@@ -22,6 +25,7 @@ app.get('/',(req,res)=>{
 
 app.use('/products',productRoutes);
 app.use('/users',userRoutes);
+app.use('/auth',authRoute);
 
 
 
@@ -58,7 +62,7 @@ app.use('/users',userRoutes);
 
 
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 8080
 app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}`)
 })
